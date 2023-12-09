@@ -8,4 +8,6 @@ urlpatterns = [
     path('atualizar',ClienteAtualizarView.as_view(),name='cliente_atualizar'),
     path('excluir/<int:codigo>',ClienteExcluirView.as_view(),name='cliente_excluir'),  
     path('buscar',ClienteBuscarView.as_view(),name='cliente_buscar'),  
+    path('cep',BuscaCEPView.as_view(),name='cep'),  
+    
 ]

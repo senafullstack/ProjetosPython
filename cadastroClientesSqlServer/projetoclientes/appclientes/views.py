@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from .utils import ValidadorUtil
+import requests
 class ClienteIndexView(ListView):
     template_name = 'cliente/index.html'
     model = Clientes
@@ -122,4 +123,32 @@ class ClienteBuscarView(TemplateView):
         content = {
             "lista": lista
         }
-        return render(request,self.template_name,content)        
+        return render(request,self.template_name,content)      
+    
+    
+class BuscaCEPView(TemplateView):
+    template_name ="cep/index.html"
+    def get(self, request):
+        content = {
+            "lista": ''
+        }
+        return render(request,self.template_name,content)   
+    def post(self, request):
+        cep = request.POST.get('cep')
+        if(cep):
+             api_url = f'https://viacep.com.br/ws/{cep}/json/'
+             response = requests.get(api_url)
+             if response.status_code == 200:
+                data = response.json()
+                content = {
+                    "lista": data
+                }
+             else:
+                content = {
+                    "lista": {'erro': 'Erro ao consultar o CEP'}
+                }
+        else:
+            content = {
+                    "lista": {'erro': 'Erro ao consultar o CEP'}
+                }
+        return render(request,self.template_name,content)      

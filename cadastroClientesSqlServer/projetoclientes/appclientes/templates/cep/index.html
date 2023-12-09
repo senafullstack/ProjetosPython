@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+{% block titulopagina %}
+Consulta Cep
+{% endblock%}
+{% block conteudo %}
+<Br>
+    <div class="card">
+      <div class="card-header">
+        <h3><b class="fa fa-user"></b> Consultar Cep
+          <a href="{% url 'cliente_index'%}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+          </h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+              <div class="row">
+              <div class='col-md-4'>  
+                <form  action={% url 'cep'%} method="POST"class="d-flex" role="search">
+                    {% csrf_token%}
+                    <input class="form-control me-2 cepbusca" name="cep" id="cep" type="search" placeholder="Buscar CEP" aria-label="busca">
+                    <button class="btn btn-outline-success" type="submit">Buscar por nome </button>
+                  </form>
+   
+            </div>
+            
+            </div>
+             <br>
+      
+             {% if lista %}
+             {% if lista.erro %}
+                 <p>{{ lista.erro }}</p>
+             {% else %}
+                 <p>CEP: {{ lista.cep }}</p>
+                 <p>Logradouro: {{ lista.logradouro }}</p>
+                 <p>Bairro: {{ lista.bairro }}</p>
+                 <p>Cidade: {{ lista.localidade }}</p>
+                 <p>Estado: {{ lista.uf }}</p>
+             {% endif %}
+         {% else %}
+             <p>Nenhum resultado disponível.</p>
+         {% endif %}
+      </form>
+      </div>
+      <!-- /.card-body -->
+    </div>
+
+ {%endblock%}
