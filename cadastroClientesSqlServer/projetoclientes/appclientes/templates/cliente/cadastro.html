@@ -1,0 +1,129 @@
+{% extends 'layout/base.html' %}
+{% block titulopagina %}
+Clientes
+{% endblock%}
+{% block conteudo %}
+<div class = "container-fluid">
+    <Br>
+
+        <div class="row">
+            <Br>
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- jquery validation -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3><b class="fa fa-user"></b> Cadastro de Cliente
+                    <a href="{% url 'cliente_index'%}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    </h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form id="form_cadusuario" action="{% url 'cliente_salvar' %}" method="POST">
+                    {% csrf_token %}
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>
+
+                                <div class="alert alert-primary" role="alert">
+                                    {{ message }}
+                                  </div>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                  {% endif %}
+                  <div class="card-body">
+
+                    <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label >Nome <i class="obrigatorio">*</i></label>
+                                    <input type="nome"  name="nome" class="form-control" id="exampleInputEmail1" placeholder="Nome">
+                                  </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email <i class="obrigatorio">*</i> </label>
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                  </div>
+                            </div>
+                    </div>
+                  
+                    <Br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Data de Nascimento: <i class="obrigatorio">*</i></label>
+                                <input type="text" name="datanasc" id="datanasc" class="form-control" id="exampleInputPassword1" placeholder="Data de Nascimento">
+                              </div>
+                        </div>
+                    </div>
+                    <Br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">CEP</label>
+                                <input type="text" name="cep" id="cep" class="form-control" id="exampleInputPassword1" placeholder="CEP">
+                              </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">RUA</label>
+                                <input type="text" name="rua" id="rua" class="form-control" id="exampleInputPassword1" placeholder="RUA">
+                              </div>
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Número</label>
+                                <input type="text" name="numero" id="numero" class="form-control" id="exampleInputPassword1" placeholder="numero">
+                              </div>
+                        </div>
+                </div>
+                   <br>
+                   <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">ESTADO</label>
+                            <input type="text" name="estado" id="estado" class="form-control" id="exampleInputPassword1" placeholder="Estado">
+                          </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Cidade</label>
+                            <input type="text" name="cidade" id="cidade" class="form-control" id="exampleInputPassword1" placeholder="Cidade">
+                          </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                       
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Bairro</label>
+                        <input type="text" name="bairro" id="bairro" class="form-control" id="exampleInputPassword1" placeholder="Bairro">
+                      </div>
+
+                    </div>
+            </div>
+ </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <button type="submit" class="btn-lg btn btn-primary"> <i class="fa fa-save"></i> Salvar</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card -->
+              </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+        
+            </div>
+            <!--/.col (right) -->
+          </div>
+        </div>
+ {%endblock%}

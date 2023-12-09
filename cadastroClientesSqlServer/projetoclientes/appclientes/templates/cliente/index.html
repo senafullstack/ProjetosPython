@@ -1,0 +1,107 @@
+{% extends 'layout/base.html' %}
+{% block titulopagina %}
+Clientes
+{% endblock%}
+{% block conteudo %}
+<Br>
+    <div class="card">
+      <div class="card-header">
+        <h3><b class="fa fa-user"></b>  Cadastro de  Clientes
+          <a href="{% url 'cliente_index'%}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+          </h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+              <div class="row">
+              <div class='col-md-2'>  
+            
+                  <a href="{% url 'cliente_cadastro' %}"  class="btn-lg btn btn-success"> <i class="fas fa-plus mr-2"></i> Novo Usuário</a>
+     
+              </div>
+              <div class='col-md-10'>  
+            
+                <form  action={% url 'cliente_buscar'%} method="POST"class="d-flex" role="search">
+                    {% csrf_token%}
+                    <input class="form-control me-2" name="filtro" type="search" placeholder="busca por nome ou email" aria-label="busca">
+                    <button class="btn btn-outline-success" type="submit">Buscar por nome </button>
+                  </form>
+   
+            </div>
+            
+            </div>
+             <br>
+        <table id="tabeladata" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Data de Nascimento</th>
+              <th>CEP</th>
+             <th>Editar</th>
+              <th>Excluir</th>
+              
+         
+          </tr>
+          </thead>
+          <tbody>
+         {% if lista   %}
+          {% for lista in lista %}     
+          <tr>
+            <td>{{lista.nome}}</td>
+            <td>{{lista.email}}</td>
+            <td>{{lista.datanasc|date:"d/m/Y"}}</td>
+            <td>{{lista.cep}}</td>
+     
+         
+            <td> 
+              <a class="btn btn-sm btn-success" href="{% url 'cliente_editar' lista.id_cliente%}"><i class='fa fa-edit'></i> </a> 
+            </td>
+          
+            <td> 
+                <a class="btn btn-sm btn-danger" href="{% url 'cliente_excluir' lista.id_cliente%}">   <b class="fa fa-trash"></b> </a> 
+             
+            </td>
+          
+           
+            
+          
+          </tr>
+          {% endfor %}  
+        {% endif %}
+       </tbody>
+          <tfoot>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Data de Nascimento</th>
+            <th>CEP</th>
+              <th>Editar</th>
+              <th>Excluir</th>
+          </tr>
+          </tfoot>
+        </table>
+        <div class="pagination">
+            <span class="step-links">
+             
+                {% if page_obj.has_previous %}
+                    <a href="?pagina=1">&laquo; primeira</a>
+                    <a href="?pagina={{ page_obj.previous_page_number }}">anterior</a>
+                {% endif %}
+
+    
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+    
+                {% if page_obj.has_next %}
+                    <a href="?pagina={{ page_obj.next_page_number }}">próxima</a>
+                    <a href="?pagina={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+      </form>
+      </div>
+      <!-- /.card-body -->
+    </div>
+
+ {%endblock%}
