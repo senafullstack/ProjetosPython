@@ -63,30 +63,20 @@ WSGI_APPLICATION = 'projetoclientes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'sql_server.pyodbc',
-#        'NAME': 'clientes',
-#        'HOST': 'LOCALDB',  # Use o nome do DSN criado
-#        'PORT': '',  # Deixe vazio para usar a porta padrão
-#        'OPTIONS': {
-#            'driver': 'ODBC Driver 11 for SQL Server',  # Driver adequado para o SQL Server 2012
-#        },
-#   },
-#}
-
-#DATABASES['default']['OPTIONS']['MARS_Connection'] = True  # Ativar MARS (Multiple Active Result Sets)
-
 DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
         'NAME': 'clientes',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-    }
+        'HOST': 'LOCALDB',  # Use o nome do DSN criado
+        'PORT': '',  # Deixe vazio para usar a porta padrão
+        'OPTIONS': {
+            'driver': 'ODBC Driver 11 for SQL Server',  # Driver adequado para o SQL Server 2012
+        },
+   },
 }
+
+DATABASES['default']['OPTIONS']['MARS_Connection'] = True  # Ativar MARS (Multiple Active Result Sets)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
