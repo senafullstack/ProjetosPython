@@ -24,7 +24,9 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'cliente_index' %}">Listar Clientes</a>
               </li>
-             
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="{% url 'cep' %}">Consultar CEP</a>
+              </li>
             </ul>
            
             <form  action={% url 'cliente_buscar'%} method="POST"class="d-flex" role="search">
