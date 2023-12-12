@@ -1,0 +1,68 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}{% endblock%}
+{% block conteudo %}
+<br>
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Controle de Acesso ap</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <form  action="{% url 'permissaoperfil_salvar' %}" method="POST"> 
+            {% csrf_token %}
+           <input type="hidden" name="codigoperfil" value="{{ codigoperfil }}"/>
+       
+        <button type="submit" class="btn btn-success">Atualizar Selecionados</button>
+      <table id="tabeladata" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Formulário(Rota)</th>
+            <th>Permissão</th>
+            <th>Atribuir/Remover Permissão</th>
+            <th><div  class="icheck-danger">
+              <input type="checkbox" value=""    id="selecionartodosck" >
+              <label for="selecionartodosck"></label>
+            </div></th>
+        </tr>
+        </thead>
+        <tbody>
+       {% if listapf   %}
+        {% for lista in listapf %}     
+        <tr>
+          <td>{{lista.formulario.descricao}}</td>
+          <td>{{lista.permissao}}</td>
+          <td>
+            {% if lista.permissao == 'S' %}
+                <a class="btn btn-success" href="#"><i class='fa fa-check'></i> </a>
+            {% else %}
+                <a class="btn btn-danger" href="#"><i class='fa fa-ban'></i> </a>
+            {% endif %}
+        </td>
+          <td>
+            
+            
+            <div  class="icheck-danger">
+              <input type="checkbox"  name="permissoes" value="{{lista.id_perfilformulario}}" id="todoCheck{{lista.id_perfilformulario}}" >
+              <label for="todoCheck{{lista.id_perfilformulario}}"></label>
+            </div>
+          
+          
+          </td>
+        </tr>
+        {% endfor %}  
+      {% endif %}
+     </tbody>
+        <tfoot>
+        <tr>
+            <th>Formulário(Rota)</th>
+            <th>Permissão</th>
+            <th>checkbox</th>
+            <th>Atribuir/Remover Permissão</th>
+        </tr>
+        </tfoot>
+      </table>
+    </form>
+    </div>
+    <!-- /.card-body -->
+  </div>
+{%endblock%}
