@@ -1,0 +1,71 @@
+[33mcommit e69ffdf0461b0601925bbe16181eeed43dc44fe7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: unknown <sena.israel@senawebsoft.com.br>
+Date:   Thu Dec 21 00:46:38 2023 -0300
+
+    novos arquivos
+
+[33mcommit 013c4eddcf00d1f7bfcc2b7b628cf6b0486d1f1c[m
+Author: unknown <sena.israel@senawebsoft.com.br>
+Date:   Thu Dec 21 00:43:15 2023 -0300
+
+    Remover arquivo grande do commit
+
+[33mcommit 4c2f2af1026bbd74a52a91068637d6d67d45e8ea[m
+Author: unknown <sena.israel@senawebsoft.com.br>
+Date:   Thu Dec 21 00:24:59 2023 -0300
+
+    ajustes
+
+[33mcommit 159655fac0797ecccd4402b4fc28c6c9e9ac352a[m
+Author: unknown <sena.israel@senawebsoft.com.br>
+Date:   Thu Dec 21 00:17:36 2023 -0300
+
+    Projeto Previsão do tempo PYTHON-MONGODB
+
+[33mcommit 64a79e9058af0f29a294615b168be63218b710a2[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: israel sena <sena.israel@senawebsoft.com.br>
+Date:   Mon Dec 11 21:11:02 2023 -0300
+
+    Sistema de Autenticação personalizado python
+
+[33mcommit 0c80205952928885766b3fb251de893765dae1da[m
+Author: israel sena <sena.israel@senawebsoft.com.br>
+Date:   Sat Dec 9 12:20:41 2023 -0300
+
+    readme
+
+[33mcommit bb03eb7c613fd6acd923fdba36d780f0d97f7f1a[m
+Author: israel sena <sena.israel@senawebsoft.com.br>
+Date:   Sat Dec 9 12:14:48 2023 -0300
+
+    CEP MENU
+
+[33mcommit b43258bf6afa25892fafc0e00a9c2d9a6ae87cee[m
+Author: israel sena <sena.israel@senawebsoft.com.br>
+Date:   Sat Dec 9 12:11:50 2023 -0300
+
+    busca cep
+
+[33mcommit 0abbdd9338ca1ff4d3821c9e9330d69f7ed4da6d[m
+Author: israel sena <sena.israel@senawebsoft.com.br>
+Date:   Sat Dec 9 11:36:04 2023 -0300
+
+    detalhes finais
+
+[33mcommit 22618fc0c84c6153bb165f5b716fb6f6b118ba9c[m
+Author: israel sena <sena.israel@senawebsoft.com.br>
+Date:   Sat Dec 9 11:33:52 2023 -0300
+
+    ClientEs CEP
+
+[33mcommit e7468f6cd991c516e35cded1841f6162cbffb501[m
+Author: israel sena <sena.israel@senawebsoft.com.br>
+Date:   Sat Dec 9 11:21:59 2023 -0300
+
+    Projetos python
+
+[33mcommit a397e33d9e8b638b16de65e430940ac1cb6388ad[m
+Author: senafullstack <sena.israel@senawebsoft.com.br>
+Date:   Sat Dec 9 10:36:58 2023 -0300
+
+    Initial commit
