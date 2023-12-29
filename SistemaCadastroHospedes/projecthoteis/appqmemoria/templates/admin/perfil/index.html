@@ -1,0 +1,119 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}
+Perfil 
+{% endblock%}
+{% block conteudo %}
+<Br>
+<div class="card">
+    <div class="card-header">
+        <h3><b class="fa fa-user"></b>  Controle de  Perfil
+             <a href="{% url 'adminhome' %}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+        </h3>
+    </div>
+    <div class="card-body">
+         <form id="form_excluirtodos"   action="{% url 'perfil_excluirtodos' %}" method="POST"> 
+             {% csrf_token %}
+                 <div class="row">
+                     <div class="col-md-8"> 
+                          {% if 'perfil_cadastro' in request.session.permissoes %}
+                                 <a href="{% url 'perfil_cadastro' %}"  class="btn btn-success"> <i class="fas fa-plus mr-2"></i> Novo Perfil</a>
+                          {% endif %}
+                          {% if 'formulario_salvar' in request.session.permissoes %}
+                          <a href="{% url 'formulario_salvar' %}"  class="btn btn-primary"> <i class="fas fa-refrash mr-2"></i> Atualizar Rotas do sistema</a>
+                          {% endif %}
+                      </div>
+                      <div class="col-md-4 text-right">
+                          {% if 'perfil_excluirtodos' in request.session.permissoes %}
+                                 <button class="btn  btn-danger" type="button" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#modal_excluir_todos" data-page="#"  data-title="Excluir Registro selecionado" data-id="2" data-message="Deseja Realmente excluir os registros selecionados?">
+        <b class="fa fa-trash"></b> Excluir Selecionados
+    </button>
+                          {% endif %}
+                       <br></div> 
+                 </div>
+                 <br>
+             <table id="tabeladata" width="100%"  class="table table-bordered table-striped">
+                 <thead>
+                 <tr>
+                     <th class="info"><b>Descricao</b></th>
+ 
+                    {% if 'perfil_editar' in request.session.permissoes %}
+                         <th>Editar</th>
+                    {% endif %}
+                    {% if 'perfil_excluir' in request.session.permissoes %}
+                         <th>Excluir</th>
+                    {% endif %}
+                    {% if 'perfil_visualizar' in request.session.permissoes %}
+                         <th>Permissões</th>
+                    {% endif %}
+                    {% if 'perfil_excluirtodos' in request.session.permissoes %}
+                           <th width="2%">
+                                <div  class="icheck-danger">
+                                <input type="checkbox" value=""    id="selecionartodosck" >
+                                <label for="selecionartodosck"></label>
+                                </div>
+                           </th>
+                    {% endif %}
+                 </tr>
+                 </thead>
+                 <tbody>
+                 {% if lista   %}
+                   {% for lista in lista %} 
+                     <tr>
+                     <td>{{lista.descricao}}</td>
+ 
+                    {% if 'perfil_editar' in request.session.permissoes %}
+                       <td> 
+        <a class="btn btn-sm btn-success" href="{% url 'perfil_editar' lista.id_perfil %}"><i class="fa fa-edit"></i> </a> 
+        </td>
+                    {% endif %}
+                    {% if 'perfil_excluir' in request.session.permissoes %}
+                       <td> 
+        <button class="btn btn-sm btn-danger" type="button" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#modal_excluir_registro" data-page="{% url 'perfil_excluir' lista.id_perfil %}"  data-title="Excluir Registro " data-id="2" data-message="Deseja Realmente excluir este registro?">
+              <b class="fa fa-trash"></b>
+          </button>
+        </td>
+                    {% endif %}
+                    {% if 'perfil_visualizar' in request.session.permissoes %}
+                       <td> 
+        <a class="btn btn-sm btn-primary" href="{% url 'permissaoperfil_index' lista.id_perfil %}"><i class="fa fa-lock"></i> </a> 
+        </td>
+                    {% endif %}
+                    {% if 'perfil_excluirtodos' in request.session.permissoes %}
+                        <td><div  class="icheck-danger">
+        <input type="checkbox"  name="dadosexcluir" value="{{lista.id_perfil}}" id="todoCheck{{lista.id_perfil}}" >
+        <label for="todoCheck{{lista.id_perfil}}"></label>
+      </div></td>
+                    {% endif %}
+                     </tr>
+                  {% endfor %}  
+                {% endif %}
+             </tbody>
+             <tfoot>
+                 <tr>
+                     <th class="info"><b>Descricao</b></th>
+ 
+                    {% if 'perfil_editar' in request.session.permissoes %}
+                         <th>Editar</th>
+                    {% endif %}
+                    {% if 'perfil_excluir' in request.session.permissoes %}
+                         <th>Excluir</th>
+                    {% endif %}
+                    {% if 'perfil_visualizar' in request.session.permissoes %}
+                         <th>Visualizar</th>
+                    {% endif %}
+                    {% if 'perfil_excluirtodos' in request.session.permissoes %}
+                           <th width="2%">
+                                <div  class="icheck-danger">
+                                <input type="checkbox" value=""    id="selecionartodosck" >
+                                <label for="selecionartodosck"></label>
+                                </div>
+                           </th>
+                    {% endif %}
+                 </tr>
+          </tfoot>
+        </table>
+     </form>
+  </div>
+</div> 
+{% endblock %} 
+

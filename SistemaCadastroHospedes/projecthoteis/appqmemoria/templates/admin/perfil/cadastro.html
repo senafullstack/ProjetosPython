@@ -1,0 +1,35 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}
+Cadastro de Perfil 
+{% endblock%}
+{% block conteudo %}
+<Br>
+<div class="row">
+        <Br>
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3><b class="fa fa-user"></b> Cadastro de Perfil
+                <a href="{% url 'perfil_index' %}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+              </h3>
+            </div>
+         <form id="form_cadperfil" action="{% url 'perfil_salvar' %}" method="POST">
+                    {% csrf_token %}
+                <div class="card-body">
+            <div class="form-group">
+                <label for="lab">Descricao</label>
+                <input type="text" name="descricao" class="form-control" id="descricao" placeholder="Descricao">
+            </div>
+ 
+                
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+         </form>
+     </div>
+     </div>
+</div>
+{% endblock %} 
+

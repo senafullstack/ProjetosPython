@@ -1,0 +1,82 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}{% endblock%}
+{% block conteudo %}
+<Br>
+<div class="row">
+  <Br>
+    <div class="col-md-12">
+<div class="card card-primary">
+    <div class="card-header">
+      <h3><b class="fa fa-user"></b> Controle de Acesso do Perfil {{perfil.descricao}}
+        <a href="{% url 'perfil_index' %}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+      </h3>
+    </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <form  action="{% url 'permissaoperfil_salvar' %}" method="POST"> 
+            {% csrf_token %}
+           <input type="hidden" name="codigoperfil" value="{{ codigoperfil }}"/>
+       
+        <button type="submit" class="btn btn-success">Atualizar Selecionados</button>
+      <table id="tabeladata" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Formulário(Rota)</th>
+            <th>Permissão</th>
+            <th>Atribuir/Remover Permissão</th>
+            <th><div  class="icheck-danger">
+              <input type="checkbox" value=""    id="selecionartodosck" >
+              <label for="selecionartodosck"></label>
+            </div></th>
+        </tr>
+        </thead>
+        <tbody>
+       {% if listapf   %}
+        {% for lista in listapf %}     
+        <tr>
+          <td>{{lista.formulario.descricao}}</td>
+          <td>{{lista.permissao}}</td>
+          <td>
+            {% if lista.permissao == 'S' %}
+                <a class="btn btn-success" href="#"><i class='fa fa-check'></i> </a>
+            {% else %}
+                <a class="btn btn-danger" href="#"><i class='fa fa-ban'></i> </a>
+            {% endif %}
+        </td>
+          <td>
+            
+            {% if lista.permissao == 'S' %}
+            <div  class="icheck-danger">
+              <input type="checkbox" checked  name="permissoes" value="{{lista.id_perfilformulario}}" id="todoCheck{{lista.id_perfilformulario}}" >
+              <label for="todoCheck{{lista.id_perfilformulario}}"></label>
+            </div>
+            {% else %}
+            <div  class="icheck-danger">
+              <input type="checkbox"  name="permissoes" value="{{lista.id_perfilformulario}}" id="todoCheck{{lista.id_perfilformulario}}" >
+              <label for="todoCheck{{lista.id_perfilformulario}}"></label>
+            </div>
+            {% endif%}
+          
+          
+          </td>
+        </tr>
+        {% endfor %}  
+      {% endif %}
+     </tbody>
+        <tfoot>
+        <tr>
+            <th>Formulário(Rota)</th>
+            <th>Permissão</th>
+            <th>checkbox</th>
+            <th>Atribuir/Remover Permissão</th>
+        </tr>
+        </tfoot>
+      </table>
+    </form>
+    </div>
+    <!-- /.card-body -->
+  </div>
+</div> 
+</div>  
+{%endblock%}

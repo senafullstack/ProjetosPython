@@ -1,0 +1,136 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}
+Editar Hotel 
+{% endblock%}
+{% block conteudo %}
+<Br>
+<div class="row">
+        <Br>
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3><b class="fa fa-user"></b> Editar de Hotel
+                <a href="{% url 'hotel_index' %}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+              </h3>
+            </div>
+         <form id="form_cadhotel" action="{% url 'hotel_atualizar' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>
+                                <div class="alert alert-primary" role="alert">
+                                    {{ message }}
+                                  </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                  {% endif %}
+                    <input type="hidden" name="id_hotel" value="{{dados.id_hotel}}"/>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                           
+            <div class="form-group">
+                <label for="lab">Nome</label>
+                <input type="text" value="{{dados.nome}}"  name="nome" class="form-control" id="nome" placeholder="Nome">
+            </div>
+        
+                        </div>
+                        <div class="col-md-6">
+        
+                            <div class="form-group">
+                                <label for="lab">Nomefantasia</label>
+                                <input type="text" value="{{dados.nomefantasia}}"  name="nomefantasia" class="form-control" id="nomefantasia" placeholder="Nomefantasia">
+                            </div>
+                        </div>
+        
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="lab">CNPJ</label>
+                                <input type="text"  value="{{dados.cnpj}}" name="cnpj" class="form-control" id="cnpj" placeholder="Cnpj">
+                            </div>
+        
+                        </div>
+                        <div class="col-md-3">
+        
+                            <div class="form-group">
+                                <label for="lab">Fone</label>
+                                <input type="text"  value="{{dados.fone}}"  name="fone" class="form-control" id="fone" placeholder="Fone">
+                            </div>
+                        </div>
+        
+                        <div class="col-md-5">
+        
+                            <div class="form-group">
+                                <label for="lab">Email</label>
+                                <input type="email" value="{{dados.email}}" name="email" class="form-control" id="email" placeholder="Email">
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="lab">Endereco</label>
+                                <input type="text" value="{{dados.endereco}}"  name="endereco" class="form-control" id="endereco" placeholder="Endereco">
+                            </div>
+        
+                        </div>
+                        <div class="col-md-2">
+        
+                            <div class="form-group">
+                                <label for="lab">Numero</label>
+                                <input type="text" value="{{dados.numero}}"  name="numero" class="form-control" id="numero" placeholder="Numero">
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="lab">Bairro</label>
+                                <input type="text" value="{{dados.bairro}}"  name="bairro" class="form-control" id="bairro" placeholder="Bairro">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+        
+                            <div class="form-group">
+                                <label for="lab">Cidade</label>
+                                <input type="text"  value="{{dados.cidade}}"  name="cidade" class="form-control" id="cidade" placeholder="Cidade">
+                            </div>
+                        </div>
+        
+                        <div class="col-md-4">
+        
+                            <div class="form-group">
+                                <label for="lab">Estado</label>
+                                <input type="text" name="estado" value="{{dados.estado}}" class="form-control" id="estado" placeholder="Estado">
+                            </div>
+                        </div>
+        
+                    </div>
+          
+            <div class="form-group">
+                <label for="lab">Responsavel</label>
+                <input type="text" value="{{dados.responsavel}}"  name="responsavel" class="form-control" id="responsavel" placeholder="Responsavel">
+            </div>
+            
+ 
+                
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                </div>
+         </form>
+     </div>
+     </div>
+</div>
+{% endblock %} 
+

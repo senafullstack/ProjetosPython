@@ -1,0 +1,208 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}
+Cadastro de Hospede 
+{% endblock%}
+{% block conteudo %}
+<Br>
+<div class="row">
+        <Br>
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3><b class="fa fa-user"></b> Cadastro de Hospede
+                <a href="{% url 'hospede_index' %}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+              </h3>
+            </div>
+         <form id="form_cadhospede" action="{% url 'hospede_salvar' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>
+                                <div class="alert alert-primary" role="alert">
+                                    {{ message }}
+                                  </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                  {% endif %}
+                <div class="card-body">
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group" >
+                        <button class="btn btn-info" type="button" onclick="document.getElementById('foto').click()"><i class="fa fa-camera"></i>Foto</button>
+                        <input type="file" id="foto" name="foto" style="display:none"  class="img_upload" onchange="carregaFoto(this,'foto' )">
+                     </div>
+                     <img src="/media/imagens/sem_foto.png" width="100" class="img_upload_foto"  />
+                </div>    
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="lab">Nome</label>
+                                    <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Nascimento</label>
+                                        <div class="input-group date datapicker" data-target-input="nearest">
+                                            <input type="text"  name="datanasc" id="datanasc" class="form-control datetimepicker-input" data-target=".datapicker"/>
+                                            <div class="input-group-append" data-target=".datapicker" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                   </div>
+                            </div>
+
+                        </div>   
+                       
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="lab">Email</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Fone:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                        <input id="fone" name="fone" type="text" class="form-control" data-inputmask='"mask": "(99)99999-9999"' data-mask>
+                                     </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Cpf:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-doc"></i></span>
+                                        </div>
+                                        <input id="cpf" name="cpf" type="text" class="form-control" data-inputmask='"mask": "999.999.999-99"' data-mask>
+                                     </div>
+                                  </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                
+            </div>
+
+         
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lab">Pai</label>
+                        <input type="text" name="pai" class="form-control" id="pai" placeholder="Pai">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lab">Mãe</label>
+                        <input type="text" name="mae" class="form-control" id="mae" placeholder="Mae">
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Hotel</label>
+                        <select name="id_hotel" class="form-control select2" style="width: 100%;">
+                             <option value="" >Selecione um valor</option>
+                             {% for hotel in reg_hotel %}
+                             <option value="{{hotel.id_hotel}}">{{hotel.nome}}</option>
+                             {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lab">Quarto</label>
+                        <input type="text" name="quarto" class="form-control" id="quarto" placeholder="Quarto">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Entrada:</label>
+                            <div class="input-group "data-target-input="nearest">
+                                <input id="entrada" name="entrada" type="text" class="form-control" data-inputmask='"mask": "99/99/9999"' data-mask>
+                                <div class="input-group-append" data-target=".datatimepicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Saída</label>
+                            <div class="input-group "data-target-input="nearest">
+                                <input id="saida" name="saida" type="text" class="form-control" data-inputmask='"mask": "99/99/9999"' data-mask>
+                                <div class="input-group-append" data-target=".datatimepicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>  
+            
+          
+          <hr>
+          <h3>Dados veículo</h3>
+        
+                
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lab">Placa</label>
+                        <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa">
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lab">Marca</label>
+                        <input type="text" name="marca" class="form-control" id="marca" placeholder="Marca">
+                    </div>
+                    
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lab">Modelo</label>
+                        <input type="text" name="modelo" class="form-control" id="modelo" placeholder="Modelo">
+                    </div>
+                    
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lab">Cor</label>
+                        <input type="text" name="cor" class="form-control" id="cor" placeholder="Cor">
+                    </div>
+          
+                </div>
+            </div>
+             
+           
+           
+          
+ 
+                
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Salvar Registro</button>
+                </div>
+         </form>
+     </div>
+     </div>
+</div>
+{% endblock %} 
+

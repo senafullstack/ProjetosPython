@@ -1,0 +1,64 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}Sistema Qmemoria{% endblock%}
+{% block conteudo %}
+<br>
+<div class="row">
+{% if 'usuario_index' in request.session.permissoes %}
+<div class="col-md-4">
+    <a href="{% url 'usuario_index' %}">
+    <div class="small-box bg-info">
+        <div class="inner">
+          <h3>Usuários</h3>
+
+          <p>Conrole de Usuários</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+       
+      </div>
+      <a/>
+</div>
+{% endif %}
+
+{% if 'hotel_index' in request.session.permissoes %}
+<div class="col-md-4">
+    <a href="{% url 'hotel_index' %}">
+    <div class="small-box bg-warning">
+        <div class="inner">
+          <h3>Hotéis</h3>
+
+          <p>Conrole de Hotéis</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+       
+      </div>
+      <a/>
+</div>
+{% endif %}
+
+{% if 'hospede_index' in request.session.permissoes %}
+<div class="col-md-4">
+    <a href="{% url 'hospede_index' %}">
+    <div class="small-box bg-success">
+        <div class="inner">
+          <h3>Hospedes</h3>
+
+          <p>Conrole de Hospedes</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+       
+      </div>
+      <a/>
+</div>
+{% endif %}
+
+
+</div>
+
+
+{%endblock%}

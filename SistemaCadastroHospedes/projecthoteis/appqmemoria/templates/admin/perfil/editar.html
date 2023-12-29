@@ -1,0 +1,37 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}
+Editar Perfil 
+{% endblock%}
+{% block conteudo %}
+<Br>
+<div class="row">
+        <Br>
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3><b class="fa fa-user"></b> Editar de Perfil
+                <a href="{% url 'perfil_index' %}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+              </h3>
+            </div>
+         <form id="form_cadperfil" action="{% url 'perfil_atualizar' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="id_perfil" value="{{dados.id_perfil}}"/>
+                <div class="card-body">
+
+            <div class="form-group">
+                <label for="lab">Descricao</label>
+                <input type="text" value="{{dados.descricao}}"  name="descricao" class="form-control" id="descricao" placeholder="Descricao">
+            </div>
+ 
+                
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                </div>
+         </form>
+     </div>
+     </div>
+</div>
+{% endblock %} 
+

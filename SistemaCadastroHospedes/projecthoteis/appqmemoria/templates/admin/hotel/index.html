@@ -1,0 +1,131 @@
+{% extends 'admin/layout/base.html' %}
+{% block titulopagina %}
+Hotel 
+{% endblock%}
+{% block conteudo %}
+<Br>
+<div class="card">
+    <div class="card-header">
+        <h3><b class="fa fa-user"></b>  Controle de  Hotel
+             <a href="{% url 'adminhome' %}" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+        </h3>
+    </div>
+    <div class="card-body">
+         <form id="form_excluirtodos"   action="{% url 'hotel_excluirtodos' %}" method="POST"> 
+             {% csrf_token %}
+                 <div class="row">
+                     <div class="col-md-8"> 
+                          {% if 'hotel_cadastro' in request.session.permissoes %}
+                                 <a href="{% url 'hotel_cadastro' %}"  class="btn btn-success"> <i class="fas fa-plus mr-2"></i> Novo Hotel</a>
+                          {% endif %}
+                      </div>
+                      <div class="col-md-4 text-right">
+                          {% if 'hotel_excluirtodos' in request.session.permissoes %}
+                                 <button class="btn  btn-danger" type="button" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#modal_excluir_todos" data-page="#"  data-title="Excluir Registro selecionado" data-id="2" data-message="Deseja Realmente excluir os registros selecionados?">
+        <b class="fa fa-trash"></b> Excluir Selecionados
+    </button>
+                          {% endif %}
+                       <br></div> 
+                 </div>
+                 <br>
+             <table id="tabeladata" width="100%"  class="table table-bordered table-striped">
+                 <thead>
+                 <tr>
+                     <th class="info"><b>Nome</b></th>
+                     <th class="info"><b>Nomefantasia</b></th>
+                     <th class="info"><b>Cnpj</b></th>
+                     <th class="info"><b>Endereco</b></th>
+                     <th class="info"><b>Numero</b></th>
+                     <th class="info"><b>Bairro</b></th>
+ 
+                    {% if 'hotel_editar' in request.session.permissoes %}
+                         <th>Editar</th>
+                    {% endif %}
+                    {% if 'hotel_excluir' in request.session.permissoes %}
+                         <th>Excluir</th>
+                    {% endif %}
+                    {% if 'hotel_visualizar' in request.session.permissoes %}
+                         <th>Visualizar</th>
+                    {% endif %}
+                    {% if 'hotel_excluirtodos' in request.session.permissoes %}
+                           <th width="2%">
+                                <div  class="icheck-danger">
+                                <input type="checkbox" value=""    id="selecionartodosck" >
+                                <label for="selecionartodosck"></label>
+                                </div>
+                           </th>
+                    {% endif %}
+                 </tr>
+                 </thead>
+                 <tbody>
+                 {% if lista   %}
+                   {% for lista in lista %} 
+                     <tr>
+                     <td>{{lista.nome}}</td>
+                     <td>{{lista.nomefantasia}}</td>
+                     <td>{{lista.cnpj}}</td>
+                     <td>{{lista.endereco}}</td>
+                     <td>{{lista.numero}}</td>
+                     <td>{{lista.bairro}}</td>
+ 
+                    {% if 'hotel_editar' in request.session.permissoes %}
+                       <td> 
+        <a class="btn btn-sm btn-success" href="{% url 'hotel_editar' lista.id_hotel %}"><i class="fa fa-edit"></i> </a> 
+        </td>
+                    {% endif %}
+                    {% if 'hotel_excluir' in request.session.permissoes %}
+                       <td> 
+        <button class="btn btn-sm btn-danger" type="button" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#modal_excluir_registro" data-page="{% url 'hotel_excluir' lista.id_hotel %}"  data-title="Excluir Registro " data-id="2" data-message="Deseja Realmente excluir este registro?">
+              <b class="fa fa-trash"></b>
+          </button>
+        </td>
+                    {% endif %}
+                    {% if 'hotel_visualizar' in request.session.permissoes %}
+                       <td> 
+        <a class="btn btn-sm btn-primary" href="{% url 'hotel_visualizar' lista.id_hotel %}"><i class="fa fa-search"></i> </a> 
+        </td>
+                    {% endif %}
+                    {% if 'hotel_excluirtodos' in request.session.permissoes %}
+                        <td><div  class="icheck-danger">
+        <input type="checkbox"  name="dadosexcluir" value="{{lista.id_hotel}}" id="todoCheck{{lista.id_hotel}}" >
+        <label for="todoCheck{{lista.id_hotel}}"></label>
+      </div></td>
+                    {% endif %}
+                     </tr>
+                  {% endfor %}  
+                {% endif %}
+             </tbody>
+             <tfoot>
+                 <tr>
+                     <th class="info"><b>Nome</b></th>
+                     <th class="info"><b>Nomefantasia</b></th>
+                     <th class="info"><b>Cnpj</b></th>
+                     <th class="info"><b>Endereco</b></th>
+                     <th class="info"><b>Numero</b></th>
+                     <th class="info"><b>Bairro</b></th>
+ 
+                    {% if 'hotel_editar' in request.session.permissoes %}
+                         <th>Editar</th>
+                    {% endif %}
+                    {% if 'hotel_excluir' in request.session.permissoes %}
+                         <th>Excluir</th>
+                    {% endif %}
+                    {% if 'hotel_visualizar' in request.session.permissoes %}
+                         <th>Visualizar</th>
+                    {% endif %}
+                    {% if 'hotel_excluirtodos' in request.session.permissoes %}
+                           <th width="2%">
+                                <div  class="icheck-danger">
+                                <input type="checkbox" value=""    id="selecionartodosck" >
+                                <label for="selecionartodosck"></label>
+                                </div>
+                           </th>
+                    {% endif %}
+                 </tr>
+          </tfoot>
+        </table>
+     </form>
+  </div>
+</div> 
+{% endblock %} 
+
