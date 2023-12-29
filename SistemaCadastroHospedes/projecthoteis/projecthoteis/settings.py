@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-+u08#a6ip&bx07h9lf0in@)1o9$&#5_o35xtq%qu@szf_l2b&b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["destinoseguro.com.br","www.destinoseguro.com.br","127.0.0.1:8000","127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1:8000","127.0.0.1"]
 
 
 # Application definition
@@ -71,10 +71,10 @@ WSGI_APPLICATION = 'projecthoteis.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'destinoseguro',
-        'USER': 'destinoseguro',
-        'PASSWORD': 'Phpbrasil8011',
-        'HOST': 'mysql.destinoseguro.com.br',   # Or an IP Address that your DB is hosted on
+        'NAME': 'hoteis',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
@@ -112,12 +112,11 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/destinoseguro/www/static'
-#STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/destinoseguro/www/media'
-#MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
 
 
